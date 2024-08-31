@@ -8,18 +8,18 @@ from io import StringIO
 def summary_null_id(file):
 
     df = file.data
+    summary = df.columns
+    # # df = pd.read_csv(StringIO(file.decode('utf-8')))
+    # # summary = df
+    # # # filter out with empty and blank order Id
+    # df_filtered = df[df["Order Id"].str.strip() != '']
 
-    # df = pd.read_csv(StringIO(file.decode('utf-8')))
-    # summary = df
-    # # filter out with empty and blank order Id
-    df_filtered = df[df["Order Id"].str.strip() != '']
+    # # summary = df_filtered
+    # # # create summary
+    # summary = df_filtered.groupby("Description")["Total"].sum().reset_index()
 
-    # summary = df_filtered
-    # # create summary
-    summary = df_filtered.groupby("Description")["Total"].sum().reset_index()
-
-    # # # Rename columns
-    summary.columns = ["P_Description", "Total Net Amount"]
+    # # # # Rename columns
+    # summary.columns = ["P_Description", "Total Net Amount"]
 
     return summary
 

@@ -1,5 +1,10 @@
 import pandas as pd
 from io import StringIO
+from utils.summary import summary_null_id
+
+
+# save to database
+
 
 # Functions pandas on .CSV
 
@@ -84,4 +89,7 @@ def process_csv(file1: str, file2: str):
     df2 = transfrom_merchant_table(file2)
     merged_df = merge_data(df1, df2)
     
+    summaryData = summary_null_id(merged_df)
+
+    print("Summary Data", summaryData)
     return merged_df
