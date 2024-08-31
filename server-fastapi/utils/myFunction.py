@@ -1,6 +1,6 @@
 import pandas as pd
 from io import StringIO
-from utils.summary import summary_null_id
+from utils.save import save_to_db
 
 
 # save to database
@@ -89,7 +89,7 @@ def process_csv(file1: str, file2: str):
     df2 = transfrom_merchant_table(file2)
     merged_df = merge_data(df1, df2)
     
-    summaryData = summary_null_id(merged_df)
+    summaryData = save_to_db(merged_df)
 
-    print("Summary Data", summaryData)
+    print(summaryData)
     return merged_df

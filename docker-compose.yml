@@ -17,32 +17,32 @@ services:
       - app-network
     
     # FastAPI Backend service
-    backend:
-      build:
-        context: ./server-FastAPI
-        target: production
-        dockerfile: Dockerfile
-      ports:
-        - "8000:80"
-      environment: 
-        DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
-      depends_on:
-        - postgres
-      networks:
-        - app-network
+  backend:
+    build:
+      context: ./server-FastAPI
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment: 
+      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+    depends_on:
+      - postgres
+    networks:
+      - app-network
 
       # Next.js Frontend Service
-      frontend:
-        build:
-          context: ./client-nextjs
-          target: production
-          dockerfile: Dockerfile
-        ports:
-          - "3000:3000"
-        depends_on:
-          - backend
-        networks:
-          - app-network
+  frontend:
+    build:
+      context: ./client-nextjs
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
 
 networks:
   app-network:

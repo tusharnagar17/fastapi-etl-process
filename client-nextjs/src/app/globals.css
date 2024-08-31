@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form-label {
+    @apply text-center text-3xl font-medium m-20 w-full;
+}

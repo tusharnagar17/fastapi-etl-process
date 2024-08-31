@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  
+  backend:
+    build:
+      context: ./server-fastapi
+      target: development
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+    volumes:
+      - ./server-fastapi:/app
+
+  frontend:
+    build:
+      context: ./client-nextjs
+      target: development
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./client-nextjs:/app
+      
