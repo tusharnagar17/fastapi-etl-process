@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Service
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    networks:
+      - app-network
+    
+    # FastAPI Backend service
+    backend:
+      build:
+        context: ./server-FastAPI
+        target: production
+        dockerfile: Dockerfile
+      ports:
+        - "8000:80"
+      environment: 
+        DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+      depends_on:
+        - postgres
+      networks:
+        - app-network
+
+      # Next.js Frontend Service
+      frontend:
+        build:
+          context: ./client-nextjs
+          target: production
+          dockerfile: Dockerfile
+        ports:
+          - "3000:3000"
+        depends_on:
+          - backend
+        networks:
+          - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

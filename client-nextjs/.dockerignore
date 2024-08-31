@@ -1,0 +1,51 @@
+# Ignore Python bytecode files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyd
+
+# Ignore local virtual environment
+venv/
+.env/
+.envrc
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+
+# Ignore Dockerfile and .dockerignore itself
+Dockerfile
+.dockerignore
+
+# Ignore local development settings or configuration files
+*.log
+*.tmp
+*.swp
+
+# Ignore git-related files and directories
+.git
+.gitignore
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore coverage reports
+.coverage
+*.coverage
+*.cover
+nosetests.xml
+coverage.xml
+
+# Ignore test and debug directories
+tests/
+debug/
+
+.env
+
+node_modules
+node_modules/
